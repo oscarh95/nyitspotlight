@@ -1,0 +1,8 @@
+const user = await new User({
+        username: "David Martinzez",
+        email: "dave@gmail.com",
+        password: "choom90"
+    });
+
+    await user.save();
+    res.send("user logged")
