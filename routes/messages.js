@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Messages = require('../models/MessageModel')
+const Message = require('../models/MessageModel')
 
 //new messages
 router.post('', async (req, res) => {
-    const newMessage = new Messages(req.body)
+    const newMessage = new Message(req.body)
 
     try {
         const savedMessage = await newMessage.save();
@@ -13,5 +13,17 @@ router.post('', async (req, res) => {
         res.status(500).json(err)
     }
 });
+
+//get messages
+router.get('/:conversationId', async(req, res) => {
+    try {
+        const messages = await Message.find({
+            conversationId: req.params.conversationId,
+        });
+        res.status(200).json(messages);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 module.exports = router
