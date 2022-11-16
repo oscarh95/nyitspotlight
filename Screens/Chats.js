@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Text, View, StyleSheet, FlatList } from 'react-native';
 import { Button } from 'react-native-paper';
 
@@ -12,6 +12,18 @@ import { EvilIcons } from '@expo/vector-icons';
 import spotlight from '../assets/spotlight.png';
 
 import { Container, UserImage, UserImageWrapper, UserInfo, Card, UserInfoText, UserName, MessageContents, TextSection } from '../ScreenStylings/ChatsStyles';
+import axios from 'axios';
+
+
+/*const [users, setUsers] = useState([])
+
+useEffect(() => {
+    const getUsers = async () => {
+      const res = await axios.get("/:id");
+      set
+    }
+})*/
+
 
 const listOfMessages = [
   {
@@ -38,6 +50,8 @@ const listOfMessages = [
 ]
 
 function Chats({ props, navigation }) {
+  const [chats, setChats] = useState()
+
   return (
     <Container>
       <FlatList

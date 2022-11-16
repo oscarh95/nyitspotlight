@@ -21,13 +21,33 @@ router.post('/register', async (req, res) => {
 //login
 router.post('/login', async (req, res) => {
     try{
+    
+        //user exists 
         const user = await User.findOne({email:req.body.email});
-        !user && res.status(404).send("User not found")
+        if(!user){
+            res.status(404).json("User does not exist");
+            return;
+        }
         
-        res.status(200).json(user);
-    }catch(err){
-        res.status(500).json(err);
-    }
+        //password is matching 
+        let validPassword = false;
+        if(req.body.password == user.password){
+            validPassword = true;
+        }
+        if(!validPassword){
+            res.status(400).json("Wrong password")
+            return;
+        }
+    
+        //login user
+        if(validPassword){
+            res.status(200).json(user);
+        }
+    
+        } catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
 });
 
 module.exports = router;
