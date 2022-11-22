@@ -8,6 +8,7 @@ const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
 const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
+const contentRoute = require("./routes/content")
 
 dotenv.config();
 
@@ -23,8 +24,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use('/users', userRoute);
-app.use('/auth', authRoute);
+app.use('/api/users', userRoute);
+app.use('/api/auth', authRoute);
+app.use("/api/content", contentRoute);
 app.use('/conversations', conversationRoute);
 app.use('/messages', messageRoute);
 

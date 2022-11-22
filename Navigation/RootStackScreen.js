@@ -23,7 +23,7 @@ import DrawerContents from '../Screens/DrawerContents';
 import Profile from '../Screens/Profile';
 import ChatStack from './ChatStack';
 
-import spotlight from '../assets/spotlight.png';
+//import spotlight from '../assets/spotlight.png';
 import Settings from '../Screens/Settings';
 
 const Drawer = createDrawerNavigator();
@@ -185,6 +185,8 @@ function RootStackScreen() {
         <RootStack.Screen name='Drawer' component={NavigationDrawer} />
         <RootStack.Screen name='BottomTabs' component={BottomTabs} />
         <RootStack.Screen name='ChatStack' component={ChatStack} />
+        <RootStack.Screen name='Profile' component={Profile} />
+        <RootStack.Screen name='Settings' component={Settings} />
       </RootStack.Navigator>
     </NavigationContainer>
   )

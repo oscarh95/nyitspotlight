@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, View } from 'react-native';
 
 import { 
   Container, 
@@ -19,6 +19,8 @@ import spotlight from '../assets/spotlight.png';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+
+import PostComponent from '../DynamicComponents/PostComponent';
 
 //Add a search bar at the top in here 
 
@@ -66,27 +68,7 @@ function Home({ props, navigation }) {
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <Card>
-            <UserInfo>
-              <UserImage source={spotlight} />
-              <UserInfoSection>
-                <UserName>{item.name}</UserName>
-                <Text>{item.date}</Text>
-              </UserInfoSection>
-            </UserInfo>
-            <MessageContents>{item.message}</MessageContents>
-            {item.postImage != null ? <PostImage source={spotlight} /> : item.postImage = null}
-            <InteractionWrapper>
-              <Interactions active>
-                <Feather name="heart" size={24} color="black" />
-                <InteractionTexts>Like</InteractionTexts>
-              </Interactions>
-              <Interactions>
-                <MaterialCommunityIcons name="comment-edit-outline" size={24} color="black" />
-                <InteractionTexts>Comment</InteractionTexts>
-              </Interactions>
-            </InteractionWrapper>
-          </Card>
+          <PostComponent item={item}/>
         )}
       />
     </Container>

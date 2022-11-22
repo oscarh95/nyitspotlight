@@ -1,33 +1,64 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
-  {
-    username: {
+const UserSchema = new mongoose.Schema({
+    username:{
       type: String,
-      require: true,
+      required: true,
       min: 3,
       max: 20,
-      unique: true,
-    },
-    email: {
+      unique: true
+  },
+  email:{
       type: String,
       required: true,
       max: 50,
-      unique: true,
-    },
-    password: {
+      unique: true
+  },
+  password:{
       type: String,
       required: true,
-      min: 6,
-    },
-    followers: {
+      min: 6
+  },
+  from:{
+      type: String,
+      max: 50
+  },
+  major:{
+      type: String,
+      max: 50 
+  },
+  campus:{
+      type: String,
+      max: 50
+  },
+  year:{
+      type: String,
+      max: 50
+  },
+  profilePicture:{
+      type: String,
+      default: ""
+  },
+  coverPicture:{
+      type: String, 
+      default: ""
+  },
+  followers:{
       type: Array,
-      default: [],
-    },
-    followings: {
+      default: []
+  },
+  following:{
       type: Array,
-      default: [],
-    },
+      default: []
+  },
+  isAdmin:{
+      type: Boolean,
+      default: false
+  }, 
+  desc:{
+      type: String,
+      max: 50
+  }
   },
   { timestamps: true }
 );

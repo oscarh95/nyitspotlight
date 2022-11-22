@@ -1,15 +1,12 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
-import spotlight from '../assets/spotlight.png';
-
-//Add a search bar at the top in here 
+import { Image, Text, View, StyleSheet, FlatList } from 'react-native';
 
 function Settings({props, navigation}) {
     return (
       <View>
-        <Text>
-        Settings
-        </Text>
+        <FlatList>
+
+        </FlatList>
       </View>
     )
 }

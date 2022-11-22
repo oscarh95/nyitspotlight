@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/UserModel')
 
 //register
-router.post('/register', async (req, res) => {
+router.post('/registerUser', async (req, res) => {
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
 })
 
 //login
-router.post('/login', async (req, res) => {
+router.post('/loginUser', async (req, res) => {
     try{
     
         //user exists 

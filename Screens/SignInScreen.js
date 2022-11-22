@@ -16,11 +16,16 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; //https://github.com/oblador/react-native-vector-icons#android
 import Feather from 'react-native-vector-icons/Feather';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AuthContext } from '../Context/AuthContext';
 
-//Status bar color fix: https://www.youtube.com/watch?v=Rs72pRwXIzA 23:32
-//Firebase Stuff: https://www.youtube.com/watch?v=J7pkSP18Oko
 
 const SignInScreen = ({ navigation }) => {
+
+  const[email, setEmail] = useState(null);
+  const[password, setPassword] = useState(null);
+  //const[username, setUsername] = useState(null);
+
+  const {signin} = useContext(AuthContext);
 
   const [data, setData] = useState({
     email: '',
@@ -77,7 +82,9 @@ const SignInScreen = ({ navigation }) => {
             placeholder='Your Email'
             style={styles.textInput}
             autoCapitalize='none'
-            onChangeText={(val) => textInputChange(val)}
+            //onChangeText={(val) => textInputChange(val)}
+            value={email}
+            onChangeText={text => setEmail(text)}
           />
           {data.check_TextInputChange ?
             <Feather
@@ -100,7 +107,9 @@ const SignInScreen = ({ navigation }) => {
             style={styles.textInput}
             autoCapitalize='none'
             secureTextEntry={data.secureTextEntry ? true : false}
-            onChangeText={(val) => HandlePasswordChange(val)}
+            //onChangeText={(val) => HandlePasswordChange(val)}
+            value={password}
+            onChangeText={text => setPassword(text)}
           />
           <TouchableOpacity onPress={(updateSecureTextEntry)}>
             {data.secureTextEntry ?
@@ -127,6 +136,27 @@ const SignInScreen = ({ navigation }) => {
           //onPress={handleLogin}
           //onPress={() => login(data.email, data.password)}
         //onPress={() => navigation.navigate("Home")}
+
+        onPress={() => {
+          /*const url = 'http://192.168.56.1:8800/api/auth/loginUser';
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: data.email,
+              password: data.password
+            })
+          }).then(res => {
+            return res.json()
+          }).then(data => console.log(data))
+          .catch(error => console.log('ERROR'));*/
+
+          signin(email, password);
+
+        }}
         >
           <View style={styles.button}>
             <LinearGradient

@@ -6,23 +6,64 @@ import { TextInput } from 'react-native-paper';
 function Post() {
 
     const [message, setMessasge] = useState("");
+    const HandleMessageChange = (val) =>{
+        setMessasge({
+            message:val
+        })
+    }
 
     return (
         <ScrollView>
             <View>
+                <Text>
+                    Post Message
+                </Text>
+            </View>
+            <View>
                 <TextInput
                     mode='outlined'
                     multiline={true}
-                    numberOfLines={25}
+                    numberOfLines={10}
                     focusable={true}
                     placeholder="Your Text"
-                    onChangeText={(text) => setMessasge({message:text})}
+                    onChangeText={(text) => HandleMessageChange(text)}
                 >
-                    
+                </TextInput>
+            </View>
+            <View>
+                <Text>
+                    Post Image(Optional)
+                </Text>
+            </View>
+            <View>
+                <TextInput
+                    mode='outlined'
+                    multiline={true}
+                    numberOfLines={10}
+                    focusable={true}
+                    placeholder="Your Image"
+                    onChangeText={(text) => HandleMessageChange(text)}
+                >
+                </TextInput>
+            </View>
+            <View>
+                <Text>
+                    Filters/Hashtags(Optional). Separate by commas.
+                </Text>
+            </View>
+            <View>
+                <TextInput
+                    mode='outlined'
+                    multiline={true}
+                    numberOfLines={5}
+                    focusable={true}
+                    placeholder="Your Filters/Hashtags"
+                    onChangeText={(text) => HandleMessageChange(text)}
+                >
                 </TextInput>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15 }}>
-                <TouchableOpacity onPress={() => alert({message})}
+                <TouchableOpacity onPress={() => console.log(message)}
                     style={{ alignSelf: 'center' }}
                 >
                     <LinearGradient

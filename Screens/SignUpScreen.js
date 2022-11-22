@@ -181,23 +181,25 @@ const SignUpScreen = ({ navigation }) => {
         </Picker> */}
 
         <TouchableOpacity
-          /* onPress={() => {
-            firestore()
-              .collection('userInfo')
-              .doc()
-              .set({
+           onPress={() => {
+            const url = 'http://192.168.56.1:8800/api/auth/registerUser';
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                username: data.name,
                 email: data.email,
-                password: data.password,
-                name: data.name,
-                age: data.age,
-                AccountType: data.AccountType,
+                password: data.password
               })
-              .then(() => {
-                console.log('User added!');
-              });
-            register(data.email, data.password);
+            }).then(res => {
+              return res.json()
+            }).then(data => console.log(data))
+            .catch(error => console.log('ERROR'));
           }
-          } */
+          } 
           style={[styles.signIn, {
             borderColor: '#009387',
             borderWidth: 1,
